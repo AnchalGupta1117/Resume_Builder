@@ -56,7 +56,7 @@ const resumeSchema = new mongoose.Schema({
     skills: [
         {
             name: String,
-            progress: number,
+            progress: Number,
         }
     ],
     //PROJECTS  
@@ -79,7 +79,7 @@ const resumeSchema = new mongoose.Schema({
     languages: [
         {
             name: String,
-            progress:Number,
+            progress: Number
         }
     ],
     interests: [String],
