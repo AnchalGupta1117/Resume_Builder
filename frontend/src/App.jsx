@@ -1,10 +1,17 @@
 import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import LandingPage from './pages/LandingPage'
+import UserProvider from './context/UserContext.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 
 const App = () => {
-  return (
-    <div><h1 className="text-3xl font-bold underline">
-    Hello world!
-  </h1></div>
+  return ( 
+    <UserProvider>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={<Dashboard/>} />
+      </Routes>
+    </UserProvider>
   )
 }
 
