@@ -6,13 +6,15 @@ import { authStyles as styles } from '../assets/dummystyle';
 import { Inputs } from './Inputs';
 import axiosInstance from '../utils/axiosInstance';
 import { API_PATHS } from '../utils/apiPaths';
+import { useEffect } from 'react';
+import { User } from 'lucide-react';
 
 const Login = ({setCurrentPage}) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const { updateUser } = useContext(UserContext);
+    const { user,updateUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -39,7 +41,9 @@ const Login = ({setCurrentPage}) => {
             setError(err.response?.data?.message || 'Login failed. Please try again.');
         }
     };
-
+useEffect(() => {
+    if (user) navigate('/dashboard');
+  }, [user, navigate]);
 
 
   return (

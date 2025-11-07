@@ -1,3 +1,7 @@
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+import { useContext } from "react";
+import { cardStyles } from "../assets/dummystyle";
 
 
 // PROFILE INFO CARDS
@@ -14,18 +18,29 @@ export const ProfileInfoCard = () => {
     return (
         user && (
             <div className={cardStyles.profileCard}>
-                <div className={cardStyles.profileInitialContainer}>
+                <div className={cardStyles.profileInitialsContainer}>
                     <span className={cardStyles.profileInitialsText}>
                         {user.name ? user.name.charAt(0).toUpperCase() : ""}  
                     </span>
                 </div>
-                <div className={cardStyles.profileName}>
+                {/* <div className={cardStyles.profileName}>
                     {user.name || ""}
                 </div>
                 <button className={cardStyles.logoutButton} 
                     onClick={handleLogout}>
                     Logout
-                </button>
+                </button> */}
+                <div className="flex flex-col items-center">
+                    <div className={cardStyles.profileName}>
+                        {user.name || ""}
+                    </div>
+                    <button
+                        className={cardStyles.logoutButton}
+                        onClick={handleLogout}
+                    >
+                        Logout
+                    </button>
+                </div>
             </div>
         )
     );

@@ -172,10 +172,16 @@ export const dashboardStyles = {
 
 export const cardStyles = {
   // ProfileInfoCard styles
-  profileCard: "flex items-center gap-3 p-2 sm:p-3 bg-white backdrop-blur-xl border border-gray-200 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03]",
+  //profileCard: "flex items-center gap-3 p-2 sm:p-3 bg-white backdrop-blur-xl border border-gray-200 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03]",
+  profileCard: "flex flex-col items-center p-2 sm:p-3 bg-white backdrop-blur-xl border border-gray-200 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03]",
+
   profileInitialsContainer: "w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center shadow-md",
+  
   profileInitialsText: "text-base sm:text-lg font-black text-white",
-  profileName: "text-xs sm:text-sm font-bold text-gray-800",
+
+  //profileName: "text-xs sm:text-sm font-bold text-gray-800",
+  profileName: "mt-1 text-xs sm:text-sm font-bold text-gray-800",
+
   logoutButton: "text-violet-600 text-[10px] sm:text-xs font-bold cursor-pointer hover:text-fuchsia-600 transition-colors",
 
   // ResumeSummaryCard styles
