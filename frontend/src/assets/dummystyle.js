@@ -159,9 +159,14 @@ export const dashboardStyles = {
   newResumeText: "text-gray-600 text-center",
 
   // Modal
-  modalHeader: "flex justify-between items-center mb-4",
-  modalTitle: "text-xl font-bold text-gray-900",
-  modalCloseButton: "text-gray-500 hover:text-gray-700",
+  // modalHeader: "flex justify-between items-center mb-4",
+  // modalTitle: "text-xl font-bold text-gray-900",
+  // modalCloseButton: "text-gray-500 hover:text-gray-700",
+  
+  // Modal
+modalHeader: "relative mb-4 h-10", // give some height
+modalTitle: "absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl font-bold text-gray-900",
+modalCloseButton: "absolute right-0 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700",
 
   // Delete Confirmation
   deleteIconWrapper: "bg-red-100 p-3 rounded-full mb-4",
@@ -173,7 +178,7 @@ export const dashboardStyles = {
 export const cardStyles = {
   // ProfileInfoCard styles
   //profileCard: "flex items-center gap-3 p-2 sm:p-3 bg-white backdrop-blur-xl border border-gray-200 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03]",
-  profileCard: "flex flex-col items-center p-2 sm:p-3 bg-white backdrop-blur-xl border border-gray-200 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03]",
+  profileCard: "flex items-center p-2 sm:p-3 bg-white backdrop-blur-xl border border-gray-200 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.03]",
 
   profileInitialsContainer: "w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center shadow-md",
   
@@ -242,7 +247,7 @@ export const cardStyles = {
 export const authStyles = {
   //container: "w-[90vw] md:w-[400px] p-8 bg-gradient-to-br from-white to-violet-50 rounded-3xl border border-violet-100 shadow-2xl",
   
-  container: "min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 via-violet-100 to-violet-200 relative overflow-hidden p-4",
+  container: "min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 via-violet-100 to-violet-200 relative overflow-hidden p-4 sm:px-6 lg:px-8",
 
   headerWrapper: "text-center mb-8",
   title: "text-2xl font-black text-slate-900 mb-2",
