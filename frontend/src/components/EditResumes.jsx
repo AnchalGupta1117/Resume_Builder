@@ -10,7 +10,7 @@ import axiosInstance from '../utils/axiosInstance'
 import { fixTailwindColors } from '../utils/COLOR.JS'
 import html2pdf from 'html2pdf.js'
 import StepProgress from './StepProgress'
-import { AlertCircle, ArrowLeft, FastForward, Save } from 'react-feather'
+import { AlertCircle, ArrowLeft, Check, FastForward, Save } from 'react-feather'
 import { ProfileInfoForm,ContactInfoForm,WorkExperienceForm ,EducationDetailsForm,SkillsInfoForm,ProjectDetailForm,AdditionalInfoForm,CertificationInfoForm} from './forms'
 import ThemeSelector from './ThemeSelector'
 import RenderResume from './RenderResume'
@@ -748,13 +748,56 @@ const uploadResumeImages = async () => {
         </Modal>
 
         <Modal isOpen={openPreviewModal} onClose={()=> setOpenPreviewModal(false)}
-        title={resumeData.title}
-        showActionBtn
-        actionBtnText={isDownloading?"Generating..."
-          :downloadSuccess ? "downloaded!" : "Download PDF"
-        }>
-
+          title={resumeData.title}
+          showActionBtn
+          actionBtnText={isDownloading?"Generating..."
+            :downloadSuccess ? "downloaded!" : "Download PDF"}
+          
+            actionBtnIcon={
+              isDownloading ? (
+                <Loader2 size={16} className='animate-spin'/>
+              ) : 
+                downloadSuccess ? (
+                  <Check size={16} className='text-white'/>
+                ): (
+                  <Download size={16}/>
+                )
+              
+          
+            }
+            onActionClick={downloadPDF}
+          >
+            <div className='relative'>
+              <div className='text-center mb-4'>
+                <div className={statusStyles.modalBadge}>
+                  <div className={iconStyles.pulseDot}></div>
+                  <span> Completion : {completionPercentage}%</span>
+                </div>
+              </div>
+              <div className={containerStyles.pdfPreview}>
+                <div ref={resumeDownloadRef} className='a4-wrapper'>
+                  <div className='w-full h-full'>
+                    <RenderResume key={`pdf-${resumeData?.template?.theme}`}
+                    templateId={resumeData?.template?.theme || ""}
+                    resumeData={resumeData}
+                    containerWidth={null}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          
         </Modal>
+
+        {/* THUMBNAIL ERRROR FIX */}
+        <div style={{display:"none"}} ref={thumbnailRef}>
+          <div className={containerStyles.hiddenThumbnail}>
+            <RenderResume key={`thumb-${resumeData?.template?.theme}`}
+            templateId={resumeData?.template?.theme || ""}
+            resumeData={resumeData}
+            />
+          </div>
+        </div>
     </DashboardLayout>
   )
 }
