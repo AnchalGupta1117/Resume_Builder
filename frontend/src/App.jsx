@@ -5,6 +5,8 @@ import UserProvider from "./context/UserContext.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import ProtectedRoute from "./routes/ProtectedRoutes.jsx";
 import CreateResumesForm from "./components/createResumesForm.jsx";
+import EditResume from "./components/EditResumes.jsx";
+import {Toaster} from "react-hot-toast";
 
 const App = () => {
   return (
@@ -12,7 +14,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/create-resume" element={<CreateResumesForm />} />
-        <Route path="/resume/:id" element={<Dashboard />} />
+        <Route path="/resume/view/:id" element={<Dashboard />} />
+  <Route path="/resume/edit/:resumeId" element={<EditResume />} />
 
         <Route
           path="/dashboard"
@@ -23,6 +26,14 @@ const App = () => {
           }
         />
       </Routes>
+      <Toaster toastOptions={{
+        className:"",
+        style:{
+          fontSize: "13px"
+        }
+      }}>
+
+      </Toaster>
     </UserProvider>
   );
 };

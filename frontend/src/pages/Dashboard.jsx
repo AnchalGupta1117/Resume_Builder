@@ -122,9 +122,9 @@ const fetchAllResumes=async()=>{
 
     const handleDeleteResume=async ()=>{
         if(!resumeToDelete) return;
-
+            console.log('Deleting resume with ID:', resumeToDelete);
         try{
-            await axiosInstance.delete(API_PATHS.RESUME.DELETE(resumeToDelete))
+            const response = await axiosInstance.delete(API_PATHS.RESUME.DELETE(resumeToDelete))
             toast.success('Resume deleted successfully')
             fetchAllResumes()
         }
@@ -214,7 +214,7 @@ const fetchAllResumes=async()=>{
                     (
                         <ResumeSummaryCard key={resume._id}imgUrl={resume.thumbnailLink}
                         title={resume.title} createdAt={resume.createdAt} updatedAt={resume.updatedAt}
-                        onSelect={()=>navigate(`/resume/${resume._id}`)}
+                        onSelect={()=>navigate(`/resume/edit/${resume._id}`)}
                         onDelete={()=>handleDeleteClick(resume._id)}
                         completion={resume.completion || 0}
                         isPremium={resume.isPremium}
@@ -236,9 +236,10 @@ const fetchAllResumes=async()=>{
                         X
                     </button>
                 </div>
-                <CreateResumeForm onSuccess={()=>{
+                <CreateResumeForm onSuccess={(newResumeId)=>{
                     setOpenCreateModal(false);
-                    fetchAllResumes();
+                    //fetchAllResumes();
+                    navigate(`/resume/edit/${newResumeId}`);
                 }}/>
             </div>
         </Modal>

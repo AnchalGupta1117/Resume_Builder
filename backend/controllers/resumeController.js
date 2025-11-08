@@ -78,7 +78,7 @@ export const createResume = async (req, res) => {
         res.status(201).json(newResume);
     }
     catch (error) {
-        res.status(500).json({message: 'failed t create resume', error: error.message});
+        res.status(500).json({message: 'failed to create resume', error: error.message});
     }
 };
 
@@ -86,7 +86,7 @@ export const createResume = async (req, res) => {
 export const getUserResumes = async (req, res) => {
     try {
         const resumes = await Resume.find({userId: req.user._id}).sort({
-            updated_at: -1
+            updatedAt: -1
         });
         res.json(resumes)
     }
@@ -98,7 +98,10 @@ export const getUserResumes = async (req, res) => {
 //GET RESUME BY ID
 export const getResumeById = async (req, res) => {
     try {
-        const resume =  await Resume.findOne(req.params.id,userId=req.user._id);
+        const resume =  await Resume.findOne({_id: req.params.id,
+    userId: req.user._id}
+            //req.params.id,userId=req.user._id
+            );
 
         if (!resume) {
             return res.status(404).json({message: 'Resume not found'});
@@ -110,7 +113,7 @@ export const getResumeById = async (req, res) => {
     }
 };
 //UPDATE RESUME
-export const updateResume = async (req, res) => {
+export const updatedResume = async (req, res) => {
     try {
         const updatedResume = await Resume.findOne({
             _id: req.params.id,
@@ -147,23 +150,24 @@ export const deleteResume = async (req, res) => {
         const uploadsFolder = path.join(process.cwd(), 'uploads');
 
         //DELETE THUMBNAIL IF EXISTS
-        if(resume.thumbnailLink){
-            const oldThumbnail=path.join(uploadsFolder,path.basename(resume.thumbnailLink));
+        if(deletedResume.thumbnail){
+            const oldThumbnail=path.join(uploadsFolder,path.basename(deletedResume.thumbnail));
             if(fs.existsSync(oldThumbnail)){
                 fs.unlinkSync(oldThumbnail);
             }
         }
-        if(Resume.profileInfo?.profilePreviewUrl){
-            const oldProfileImg=path.join(uploadsFolder,path.basename(resume.profileInfo.profilePreviewUrl));
+        if(deletedResume?.profileInfo?.profilePreviewUrl){
+            const oldProfileImg=path.join(uploadsFolder,path.basename(deletedResume.profileInfo.profilePreviewUrl));
             if(fs.existsSync(oldProfileImg)){
                 fs.unlinkSync(oldProfileImg);
             }
         }
         //DELETE RESUME FROM DB
-        const deleted = await Resume.findOneAnddelete({
+        const deleted = await Resume.findOneAndDelete({
             _id: req.params.id,
             userId: req.user._id
         });
+        //await deletedResume.deleteOne();
         if(!deleted){
             return res.status(404).json({message: 'Resume not found or unauthorized'});
         }

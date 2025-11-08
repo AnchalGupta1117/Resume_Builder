@@ -20,7 +20,7 @@ const CreateResumesForm = () => {
     try {
       const response = await axiosInstance.post(API_PATHS.RESUME.CREATE, { title })
       if (response.data?._id) {
-        navigate(`/resume/${response.data._id}`)
+        navigate(`/resume/edit/${response.data._id}`)
       }
     } catch (error) {
       setError(error.response?.data?.message || 'Something went wrong. Please try again later')
