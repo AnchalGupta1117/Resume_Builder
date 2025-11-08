@@ -347,9 +347,9 @@ export const educationDetailsStyles = {
 
 // ProfileInfoForm Styles
 export const profileInfoStyles = {
-  container: "p-8 bg-gradient-to-br from-white to-rose-50",
-  heading: "text-2xl font-black text-slate-900 mb-8",
-  textarea: "w-full p-4 bg-white border border-rose-200 rounded-xl focus:border-rose-400 focus:ring-4 focus:ring-rose-50 transition-all outline-none resize-none",
+  container: "py-3 px-5 bg-gradient-to-br from-white to-rose-50",
+  heading: "text-2xl font-black text-slate-900 mb-4",
+  textarea: "w-full p-3 bg-white border border-rose-200 rounded-xl focus:border-rose-400 focus:ring-4 focus:ring-rose-50 transition-all outline-none resize-none",
 };
 
 // ProjectDetailForm Styles
@@ -380,12 +380,18 @@ export const workExperienceStyles = {
 
 export const containerStyles = {
   main: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6",
-  header: "flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-gradient-to-r from-white to-violet-50 border border-violet-100 rounded-2xl py-4 px-6 mb-6 shadow-sm",
-  grid: "grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8",
+  //header: "flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-gradient-to-r from-white to-violet-50 border border-violet-100 rounded-2xl py-4 px-6 mb-6 shadow-sm",
+  //grid: "grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8",
+  header: "w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-gradient-to-r from-white to-violet-50 border border-violet-100 rounded-2xl py-4 px-6 mb-6 shadow-sm",
+grid: "w-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start",
+
   formContainer: "bg-white border border-violet-100 rounded-2xl overflow-hidden shadow-sm",
-  previewContainer: "bg-white border border-violet-100 rounded-2xl overflow-hidden shadow-sm p-4",
+  previewContainer: " bg-white border border-violet-100 rounded-2xl overflow-hidden shadow-sm p-4",
   previewInner: "w-full max-w-[800px] mx-auto",
-  modalContent: "w-[90vw] h-[80vh]",
+  //modalContent: "w-[90vw] h-[80vh]",
+  modalContent:
+  "w-[90vw] max-w-5xl h-[80vh] overflow-y-auto overflow-x-hidden p-6 flex justify-center",
+
   pdfPreview: "w-full p-4 flex justify-center",
   hiddenThumbnail: "bg-white shadow-lg max-w-[400px] mx-auto"
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { Input } from "./Inputs";
+import { Inputs as Input } from "./Inputs";
 import { RatingInput } from "./ResumeSection";
 import { Plus, Trash2 } from "lucide-react";
 import {
@@ -338,9 +338,9 @@ export const ProfileInfoForm = ({ profileData, updateSection }) => {
 // ProjectDetailForm Component
 export const ProjectDetailForm = ({ projectInfo, updateArrayItem, addArrayItem, removeArrayItem }) => {
   return (
-    <div className={projectDetailStyles.container}>
+    <div className={`${profileInfoStyles.container} p-6 sm:p-8 `}>
       <h2 className={projectDetailStyles.heading}>Projects</h2>
-      <div className="space-y-6 mb-6">
+      <div className="space-y-4 mb-6">
         {projectInfo.map((project, index) => (
           <div key={index} className={projectDetailStyles.item}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
