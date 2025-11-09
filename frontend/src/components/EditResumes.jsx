@@ -29,6 +29,11 @@ import {
 import ThemeSelector from "./ThemeSelector"
 import RenderResume from "./RenderResume"
 import Modal from "./Modal"
+import html2canvas from "html2canvas"
+import { dataURLtoFile } from "../utils/helper.js"
+
+
+
 
 //RESIZE OBSERVER HOOK
 const useResizeObserver = () => {
@@ -557,6 +562,8 @@ const EditResumes = () => {
       toast.error("Failed to load resume data")
     }
   }
+
+  
   //IT WILL HELP IN CHOOSING THE PREVIEW AS WELL AS HELPS IN DOWNLOADING THE RESUME ALSO SAVES THE RESUME AS AN IMAGE
   const uploadResumeImages = async () => {
     try {
@@ -569,9 +576,20 @@ const EditResumes = () => {
 
       const fixedThumbnail = fixTailwindColors(thumbnailElement)
 
+      // Ensure element is visible and rendered properly before capture
+fixedThumbnail.style.position = "absolute"
+fixedThumbnail.style.top = "-9999px"
+fixedThumbnail.style.opacity = "1"
+fixedThumbnail.style.zIndex = "-1"
+      document.body.appendChild(fixedThumbnail) // ✅ append before rendering
+
+      // Wait a tiny bit to ensure rendering is done
+await new Promise((resolve) => setTimeout(resolve, 300))
+
       const thumbnailCanvas = await html2canvas(fixedThumbnail, {
         scale: 0.5,
         backgroundColor: "#FFFFFF",
+        useCORS: true, // just in case images/fonts are loaded
         logging: false,
       })
 
@@ -585,7 +603,11 @@ const EditResumes = () => {
       )
 
       const formData = new FormData()
+      console.log("Thumbnail file:", thumbnailFile); // check it exists
       formData.append("thumbnail", thumbnailFile)
+
+      console.log("THUMBNAIL FILE SENT:", formData.get("thumbnail"))
+      console.log("PROFILE IMAGE FILE SENT:", formData.get("profileImage"))
 
       const uploadResponse = await axiosInstance.put(
         API_PATHS.RESUME.UPLOAD_IMAGES(resumeId),

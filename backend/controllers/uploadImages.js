@@ -5,6 +5,9 @@ import Resume from '../models/resumeModel.js';
 import upload from '../middleware/uploadMiddleware.js';
 
 export const uploadResumeImages=async (req, res) => {
+    console.log("Files received:", req.files); // debug
+    console.log("Body received:", req.body);
+
     try {
         //CONFIGURE MULTER TO HANDLE IMAGES
         upload.fields([{name: 'thumbnail'},{name:'profileImage'}])

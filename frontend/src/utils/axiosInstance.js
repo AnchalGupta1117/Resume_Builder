@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {BASE_URL} from './apiPaths';
 
+
+
 const axiosInstance = axios.create({    
     baseURL: BASE_URL,
     timeout: 10000,
@@ -32,8 +34,9 @@ axiosInstance.interceptors.response.use(
     (error) => {
         if (error.response) {
             if (error.response.status === 401) {
-                //window.location.href = '/';
-                clearUser();
+                localStorage.removeItem('token');
+                window.location.href = '/';
+                
             }
             else if(error.response.status === 500){
                 console.error('Server error:', error.response.data);

@@ -19,5 +19,5 @@ const fileFilter = (req, file, cb) => {
         cb(new Error('Only jpeg, jpg, png files are allowed'), false);
     }
 };
-const upload = multer({ storage: fileFilter });
+const upload = multer({ storage,fileFilter });
 export default upload;
