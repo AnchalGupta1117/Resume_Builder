@@ -235,54 +235,54 @@ export const cardStyles = {
 
   // ResumeSummaryCard styles
   resumeCard:
-    "group relative h-[360px] sm:h-[380px] lg:h-[400px] flex flex-col bg-white border border-gray-200 rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:border-violet-300",
+    "group relative h-[360px] sm:h-[380px] lg:h-[400px] flex flex-col bg-white border-2 border-violet-200 rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-violet-300/50 hover:border-violet-400",
   cardBackground:
-    "absolute inset-0 bg-gradient-to-br from-violet-100 via-transparent to-fuchsia-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-  previewArea: "p-4 sm:p-6 flex-1 relative overflow-hidden",
+    "absolute inset-0 bg-gradient-to-br from-violet-300 via-purple-200 to-fuchsia-300 opacity-0 group-hover:opacity-30 transition-opacity duration-500",
+  previewArea: "p-4 sm:p-6 flex-1 relative overflow-hidden bg-gradient-to-br from-violet-50/50 to-purple-50/50",
   emptyPreview:
-    "w-full h-[180px] sm:h-[200px] lg:h-[220px] flex flex-col items-center justify-center rounded-2xl",
+    "w-full h-[180px] sm:h-[200px] lg:h-[220px] flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-violet-100 to-purple-100 border-2 border-dashed border-violet-400",
   emptyPreviewIcon:
-    "w-16 h-16 bg-white/90 rounded-2xl flex items-center justify-center mb-4 shadow-md",
+    "w-16 h-16 bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 rounded-2xl flex items-center justify-center mb-4 shadow-xl",
   emptyPreviewText: "text-gray-800 text-sm font-bold",
   emptyPreviewSubtext: "text-gray-500 text-xs mt-1",
-  infoArea: "bg-gray-50 border-t border-gray-200 p-4 sm:p-6",
+  infoArea: "bg-gradient-to-r from-violet-50 via-purple-50 to-fuchsia-50 border-t-2 border-violet-200 p-4 sm:p-6",
   title:
     "text-sm sm:text-base font-bold text-gray-800 truncate mb-2 group-hover:text-violet-600 transition-colors",
-  dateInfo: "flex items-center gap-2 text-xs text-gray-500",
+  dateInfo: "flex items-center gap-2 text-xs text-gray-500 font-medium",
 
   // Action buttons
   actionOverlay:
-    "absolute inset-4 sm:inset-6 bg-gradient-to-t from-white/80 via-white/20 to-transparent flex items-end justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-2xl",
+    "absolute inset-4 sm:inset-6 bg-gradient-to-t from-white/98 via-violet-50/50 to-transparent flex items-end justify-center p-6 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-2xl backdrop-blur-md",
   actionButtonsContainer: "flex gap-3",
   editButton:
-    "group/btn w-12 h-12 flex items-center justify-center bg-gradient-to-r from-violet-600 to-fuchsia-600 rounded-2xl shadow-md hover:scale-110 transition-all duration-300",
+    "group/btn w-14 h-14 flex items-center justify-center bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 rounded-2xl shadow-xl hover:scale-110 hover:shadow-2xl hover:shadow-violet-400/50 transition-all duration-300",
   deleteButton:
-    "group/btn w-12 h-12 flex items-center justify-center bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl shadow-md hover:scale-110 transition-all duration-300",
+    "group/btn w-14 h-14 flex items-center justify-center bg-gradient-to-r from-rose-600 via-pink-600 to-fuchsia-600 rounded-2xl shadow-xl hover:scale-110 hover:shadow-2xl hover:shadow-pink-400/50 transition-all duration-300",
   buttonIcon: "text-white group-hover/btn:scale-110 transition-transform",
 
   // Progress and completion styles
-  progressBar: "relative w-full h-2 bg-gray-200 rounded-full overflow-hidden",
+  progressBar: "relative w-full h-3 bg-violet-100 rounded-full overflow-hidden shadow-inner border border-violet-200",
   progressFill:
-    "h-full rounded-full transition-all duration-700 ease-out relative overflow-hidden",
+    "h-full rounded-full transition-all duration-700 ease-out relative overflow-hidden shadow-lg bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600",
   progressGlow:
-    "absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse",
+    "absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-pulse",
   progressIndicator:
-    "absolute top-0 h-full w-4 bg-gradient-to-r from-transparent to-white/50 blur-sm transition-all duration-700",
-  completionStatus: "flex justify-between items-center mt-2",
-  statusText: "text-xs font-medium text-gray-500",
-  percentageText: "text-xs font-bold text-gray-700",
+    "absolute top-0 h-full w-8 bg-gradient-to-r from-transparent to-white/70 blur-sm transition-all duration-700",
+  completionStatus: "flex justify-between items-center mt-3",
+  statusText: "text-xs font-bold text-violet-700",
+  percentageText: "text-xs font-black text-violet-800",
 
   // Completion indicator
   completionIndicator:
-    "absolute top-4 right-4 z-10 flex items-center gap-2 px-3 py-2 bg-gray-50 border border-gray-200 rounded-full shadow-sm",
-  completionDot: "w-3 h-3 rounded-full flex items-center justify-center",
-  completionDotInner: "w-1 h-1 bg-white rounded-full",
-  completionPercentageText: "text-xs font-bold text-gray-700",
+    "absolute top-4 right-4 z-10 flex items-center gap-2 px-4 py-2 bg-white/98 backdrop-blur-md border-2 border-violet-300 rounded-full shadow-xl",
+  completionDot: "w-3.5 h-3.5 rounded-full flex items-center justify-center shadow-lg bg-gradient-to-r",
+  completionDotInner: "w-2 h-2 bg-white rounded-full",
+  completionPercentageText: "text-xs font-black text-violet-800",
 
   // Completion color classes
-  completionHigh: "from-emerald-500 to-green-600",
-  completionMedium: "from-yellow-500 to-orange-500",
-  completionLow: "from-red-500 to-pink-600",
+  completionHigh: "from-violet-600 via-purple-600 to-fuchsia-600",
+  completionMedium: "from-purple-600 via-fuchsia-600 to-pink-600",
+  completionLow: "from-indigo-600 via-violet-600 to-purple-600",
 
   // TemplateCard styles
   templateCard:
@@ -373,99 +373,96 @@ export const shimmerStyle = `
 // Common Styles
 export const commonStyles = {
   trashButton:
-    "absolute top-4 right-4 p-2 text-red-500 hover:bg-red-50 rounded-xl transition-all",
+    "absolute top-4 right-4 p-2.5 text-white bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 rounded-xl transition-all hover:scale-110 shadow-lg hover:shadow-xl border-2 border-white",
   addButtonBase:
-    "flex items-center gap-3 px-6 py-3 text-white font-bold rounded-xl hover:scale-105 transition-all shadow-lg",
+    "flex items-center gap-3 px-7 py-4 text-white font-bold rounded-xl hover:scale-105 transition-all shadow-xl hover:shadow-2xl",
 }
 
 // AdditionalInfoForm Styles
 export const additionalInfoStyles = {
-  container: "p-8 bg-gradient-to-br from-white to-violet-50",
-  heading: "text-2xl font-black text-slate-900 mb-8",
+  container: "p-8 bg-gradient-to-br from-white via-violet-50 to-purple-100",
+  heading: "text-3xl font-black mb-8 bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 bg-clip-text text-transparent drop-shadow-sm",
   sectionHeading:
-    "text-lg font-bold text-slate-800 mb-6 flex items-center gap-2",
+    "text-xl font-bold text-slate-800 mb-6 flex items-center gap-3",
   dotViolet:
-    "w-2 h-2 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full",
-  dotOrange: "w-2 h-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-full",
+    "w-3 h-3 bg-gradient-to-r from-violet-500 to-purple-600 rounded-full shadow-lg animate-pulse",
+  dotOrange: "w-3 h-3 bg-gradient-to-r from-fuchsia-500 to-pink-600 rounded-full shadow-lg animate-pulse",
   languageItem:
-    "relative bg-white border border-violet-100 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all",
+    "relative bg-white/80 backdrop-blur-sm border-2 border-violet-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:border-violet-400 hover:bg-white transition-all duration-300",
   interestItem: "relative",
-  addButtonLanguage: "bg-gradient-to-r from-violet-500 to-fuchsia-500",
-  addButtonInterest: "bg-gradient-to-r from-orange-500 to-red-500",
+  addButtonLanguage: "bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 hover:from-violet-700 hover:via-purple-700 hover:to-indigo-700 hover:shadow-xl hover:shadow-purple-400/50",
+  addButtonInterest: "bg-gradient-to-r from-fuchsia-600 via-pink-600 to-rose-600 hover:from-fuchsia-700 hover:via-pink-700 hover:to-rose-700 hover:shadow-xl hover:shadow-pink-400/50",
 }
 
 // CertificationInfoForm Styles
 export const certificationInfoStyles = {
-  container: "p-8 bg-gradient-to-br from-white to-emerald-50",
-  heading: "text-2xl font-black text-slate-900 mb-8",
-  item: "relative bg-white border border-emerald-100 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all",
-  addButton: "bg-gradient-to-r from-emerald-500 to-teal-500",
+  container: "p-8 bg-gradient-to-br from-white via-purple-50 to-violet-100",
+  heading: "text-3xl font-black mb-8 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent drop-shadow-sm",
+  item: "relative bg-white/80 backdrop-blur-sm border-2 border-purple-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:border-purple-400 hover:bg-white transition-all duration-300",
+  addButton: "bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 hover:from-purple-700 hover:via-violet-700 hover:to-indigo-700 hover:shadow-xl hover:shadow-purple-400/50",
 }
 
 // ContactInfoForm Styles
 export const contactInfoStyles = {
-  container: "p-8 bg-gradient-to-br from-white to-blue-50",
-  heading: "text-2xl font-black text-slate-900 mb-8",
+  container: "p-8 bg-gradient-to-br from-white via-violet-50 to-indigo-100",
+  heading: "text-3xl font-black mb-8 bg-gradient-to-r from-violet-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent drop-shadow-sm",
 }
 
 // EducationDetailsForm Styles
 export const educationDetailsStyles = {
-  container: "p-8 bg-gradient-to-br from-white to-indigo-50",
-  heading: "text-2xl font-black text-slate-900 mb-8",
-  item: "relative bg-white border border-indigo-100 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all",
-  addButton: "bg-gradient-to-r from-indigo-500 to-purple-500",
+  container: "p-8 bg-gradient-to-br from-white via-purple-50 to-fuchsia-100",
+  heading: "text-3xl font-black mb-8 bg-gradient-to-r from-purple-600 via-fuchsia-600 to-pink-600 bg-clip-text text-transparent drop-shadow-sm",
+  item: "relative bg-white/80 backdrop-blur-sm border-2 border-purple-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:border-purple-400 hover:bg-white transition-all duration-300",
+  addButton: "bg-gradient-to-r from-purple-600 via-fuchsia-600 to-pink-600 hover:from-purple-700 hover:via-fuchsia-700 hover:to-pink-700 hover:shadow-xl hover:shadow-purple-400/50",
 }
 
 // ProfileInfoForm Styles
 export const profileInfoStyles = {
-  container: "py-3 px-5 bg-gradient-to-br from-white to-rose-50",
-  heading: "text-2xl font-black text-slate-900 mb-4",
+  container: "py-6 px-6 bg-gradient-to-br from-white via-violet-50 to-purple-100",
+  heading: "text-3xl font-black text-slate-900 mb-6 bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 bg-clip-text text-transparent drop-shadow-sm",
   textarea:
-    "w-full p-3 bg-white border border-rose-200 rounded-xl focus:border-rose-400 focus:ring-4 focus:ring-rose-50 transition-all outline-none resize-none",
+    "w-full p-4 bg-white/80 backdrop-blur-sm border-2 border-violet-200 rounded-xl focus:border-violet-500 focus:ring-4 focus:ring-violet-100 transition-all outline-none resize-none font-medium text-gray-800 shadow-lg hover:shadow-xl",
 }
 
 // ProjectDetailForm Styles
 export const projectDetailStyles = {
-  container: "p-8 bg-gradient-to-br from-white to-cyan-50",
-  heading: "text-2xl font-black text-slate-900 mb-8",
-  item: "relative bg-white border border-cyan-100 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all",
+  container: "p-8 bg-gradient-to-br from-white via-indigo-50 to-purple-100",
+  heading: "text-3xl font-black mb-8 bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 bg-clip-text text-transparent drop-shadow-sm",
+  item: "relative bg-white/80 backdrop-blur-sm border-2 border-indigo-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:border-indigo-400 hover:bg-white transition-all duration-300",
   textarea:
-    "w-full p-4 bg-white border border-cyan-200 rounded-xl focus:border-cyan-400 focus:ring-4 focus:ring-cyan-50 transition-all outline-none resize-none",
-  addButton: "bg-gradient-to-r from-cyan-500 to-blue-500",
+    "w-full p-4 bg-white/80 backdrop-blur-sm border-2 border-indigo-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all outline-none resize-none font-medium text-gray-800 shadow-lg hover:shadow-xl",
+  addButton: "bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 hover:from-indigo-700 hover:via-purple-700 hover:to-violet-700 hover:shadow-xl hover:shadow-indigo-400/50",
 }
 
 // SkillsInfoForm Styles
 export const skillsInfoStyles = {
-  container: "p-8 bg-gradient-to-br from-white to-amber-50",
-  heading: "text-2xl font-black text-slate-900 mb-8",
-  item: "relative bg-white border border-amber-100 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all",
-  addButton: "bg-gradient-to-r from-amber-500 to-orange-500",
+  container: "p-8 bg-gradient-to-br from-white via-fuchsia-50 to-purple-100",
+  heading: "text-3xl font-black mb-8 bg-gradient-to-r from-fuchsia-600 via-purple-600 to-violet-600 bg-clip-text text-transparent drop-shadow-sm",
+  item: "relative bg-white/80 backdrop-blur-sm border-2 border-fuchsia-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:border-fuchsia-400 hover:bg-white transition-all duration-300",
+  addButton: "bg-gradient-to-r from-fuchsia-600 via-purple-600 to-violet-600 hover:from-fuchsia-700 hover:via-purple-700 hover:to-violet-700 hover:shadow-xl hover:shadow-fuchsia-400/50",
 }
 
 // WorkExperienceForm Styles
 export const workExperienceStyles = {
-  container: "p-8 bg-gradient-to-br from-white to-green-50",
-  heading: "text-2xl font-black text-slate-900 mb-8",
-  item: "relative bg-white border border-green-100 p-6 rounded-2xl shadow-sm hover:shadow-lg transition-all",
+  container: "p-8 bg-gradient-to-br from-white via-indigo-50 to-violet-100",
+  heading: "text-3xl font-black mb-8 bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent drop-shadow-sm",
+  item: "relative bg-white/80 backdrop-blur-sm border-2 border-indigo-200 p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:border-indigo-400 hover:bg-white transition-all duration-300",
   textarea:
-    "w-full p-4 bg-white border border-green-200 rounded-xl focus:border-green-400 focus:ring-4 focus:ring-green-50 transition-all outline-none resize-none",
-  addButton: "bg-gradient-to-r from-green-500 to-emerald-500",
+    "w-full p-4 bg-white/80 backdrop-blur-sm border-2 border-indigo-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all outline-none resize-none font-medium text-gray-800 shadow-lg hover:shadow-xl",
+  addButton: "bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 hover:from-indigo-700 hover:via-violet-700 hover:to-purple-700 hover:shadow-xl hover:shadow-indigo-400/50",
 }
 
 export const containerStyles = {
   main: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6",
-  //header: "flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-gradient-to-r from-white to-violet-50 border border-violet-100 rounded-2xl py-4 px-6 mb-6 shadow-sm",
-  //grid: "grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8",
   header:
-    "w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-gradient-to-r from-white to-violet-50 border border-violet-100 rounded-2xl py-4 px-6 mb-6 shadow-sm",
+    "w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-gradient-to-r from-white via-violet-50 to-purple-100 border-2 border-violet-300 rounded-2xl py-5 px-6 mb-6 shadow-xl",
   grid: "w-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start",
 
   formContainer:
-    "bg-white border border-violet-100 rounded-2xl overflow-hidden shadow-sm",
+    "bg-white/95 backdrop-blur-sm border-2 border-violet-300 rounded-2xl overflow-hidden shadow-xl",
   previewContainer:
-    " bg-white border border-violet-100 rounded-2xl overflow-hidden shadow-sm p-4",
+    "bg-white/95 backdrop-blur-sm border-2 border-violet-300 rounded-2xl overflow-hidden shadow-xl p-4",
   previewInner: "w-full max-w-[800px] mx-auto",
-  //modalContent: "w-[90vw] h-[80vh]",
   modalContent:
     "w-[90vw] h-[80vh] overflow-y-auto overflow-x-hidden p-6 flex justify-center",
 
@@ -475,25 +472,25 @@ export const containerStyles = {
 
 export const buttonStyles = {
   theme:
-    "flex items-center gap-2 px-3 sm:px-4 py-2 bg-violet-100 text-violet-700 font-bold rounded-xl hover:bg-violet-200 transition-all",
+    "flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-gradient-to-r from-purple-600 via-violet-600 to-indigo-600 text-white font-bold rounded-xl hover:scale-105 hover:shadow-xl hover:shadow-purple-400/50 transition-all duration-300",
   delete:
-    "flex items-center gap-2 px-3 sm:px-4 py-2 bg-red-100 text-red-700 font-bold rounded-xl hover:bg-red-200 transition-all",
+    "flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-gradient-to-r from-rose-600 via-pink-600 to-fuchsia-600 text-white font-bold rounded-xl hover:scale-105 hover:shadow-xl hover:shadow-pink-400/50 transition-all duration-300",
   download:
-    "flex items-center gap-2 px-3 sm:px-4 py-2 bg-emerald-100 text-emerald-700 font-bold rounded-xl hover:bg-emerald-200 transition-all",
-  back: "flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gray-100 text-gray-700 font-bold rounded-xl hover:bg-gray-200 transition-all text-sm",
-  save: "flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-blue-100 text-blue-700 font-bold rounded-xl hover:bg-blue-200 transition-all text-sm",
-  next: "flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-bold rounded-xl hover:scale-105 transition-all shadow-lg text-sm",
+    "flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 text-white font-bold rounded-xl hover:scale-105 hover:shadow-xl hover:shadow-violet-400/50 transition-all duration-300",
+  back: "flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 bg-gradient-to-r from-slate-600 to-gray-700 text-white font-bold rounded-xl hover:scale-105 hover:shadow-lg transition-all text-sm",
+  save: "flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 via-purple-600 to-violet-600 text-white font-bold rounded-xl hover:scale-105 hover:shadow-xl hover:shadow-purple-400/50 transition-all text-sm",
+  next: "flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 text-white font-bold rounded-xl hover:scale-105 hover:shadow-xl hover:shadow-violet-400/50 transition-all text-sm",
   modalAction:
-    "flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-bold rounded-xl hover:scale-105 transition-all shadow-lg text-sm",
+    "flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-700 text-white font-bold rounded-xl hover:scale-105 hover:shadow-xl hover:shadow-purple-400/50 transition-all text-sm",
 }
 
 export const statusStyles = {
   completionBadge:
-    "inline-flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-full text-sm font-medium text-gray-700",
+    "inline-flex items-center gap-2 bg-gradient-to-r from-violet-100 via-purple-100 to-fuchsia-100 border-2 border-violet-300 px-4 py-2 rounded-full text-sm font-bold text-violet-700 shadow-lg",
   modalBadge:
-    "inline-flex items-center gap-2 bg-violet-100 px-3 py-1 rounded-full text-sm font-medium text-violet-700",
+    "inline-flex items-center gap-2 bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 px-4 py-2 rounded-full text-sm font-bold text-white shadow-xl",
   error:
-    "flex items-center gap-3 text-sm font-medium text-amber-700 bg-amber-50 border border-amber-200 px-4 py-3 rounded-xl mb-4",
+    "flex items-center gap-3 text-sm font-bold text-red-800 bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-300 px-4 py-3 rounded-xl mb-4 shadow-md",
 }
 
 export const iconStyles = {
@@ -505,37 +502,37 @@ export const inputStyles = {
   label:
     "block text-sm font-bold text-gray-800 mb-3 group-focus-within:text-violet-600 transition-colors",
   inputContainer: (focused) =>
-    `relative flex items-center bg-gray-50 border-2 px-4 py-3 rounded-xl transition-all duration-300 ${
+    `relative flex items-center bg-white border-2 px-4 py-3 rounded-xl transition-all duration-300 shadow-sm ${
       focused
         ? "border-violet-500 ring-4 ring-violet-500/20 shadow-lg shadow-violet-500/10"
-        : "border-gray-300 hover:border-gray-400"
+        : "border-gray-300 hover:border-violet-300"
     }`,
   inputField:
-    "w-full bg-transparent outline-none text-gray-800 placeholder-gray-500 font-medium",
+    "w-full bg-transparent outline-none text-gray-800 placeholder-gray-400 font-medium",
   toggleButton:
-    "text-gray-500 hover:text-violet-600 transition-colors p-1 rounded-lg hover:bg-gray-100",
+    "text-gray-400 hover:text-violet-600 transition-colors p-1 rounded-lg hover:bg-violet-50",
 }
 
 export const photoSelectorStyles = {
   container: "flex justify-center mb-8",
   hiddenInput: "hidden",
   placeholder: (hovered) =>
-    `relative w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center bg-gray-50 border-2 border-dashed border-gray-300 rounded-full cursor-pointer transition-all duration-300 ${
-      hovered ? "hover:border-violet-500 hover:bg-violet-50" : ""
+    `relative w-32 h-32 sm:w-36 sm:h-36 flex items-center justify-center bg-gradient-to-br from-violet-100 via-purple-100 to-fuchsia-100 border-3 border-dashed border-violet-500 rounded-full cursor-pointer transition-all duration-300 shadow-xl ${
+      hovered ? "hover:border-violet-700 hover:bg-gradient-to-br hover:from-violet-200 hover:via-purple-200 hover:to-fuchsia-200 hover:scale-105 hover:shadow-2xl" : ""
     }`,
   cameraButton:
-    "absolute -bottom-2 -right-2 w-12 h-12 flex items-center justify-center bg-gradient-to-r from-violet-500 to-fuchsia-500 hover:from-violet-600 hover:to-fuchsia-600 text-white rounded-full transition-all shadow-lg hover:scale-110",
+    "absolute -bottom-2 -right-2 w-13 h-13 flex items-center justify-center bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 hover:from-violet-700 hover:via-purple-700 hover:to-fuchsia-700 text-white rounded-full transition-all shadow-xl hover:scale-110 border-3 border-white",
   previewWrapper: "relative group",
   previewImageContainer: (hovered) =>
-    `w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-gray-200 shadow-lg transition-all duration-300 ${
-      hovered ? "group-hover:border-violet-400" : ""
+    `w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-violet-400 shadow-2xl transition-all duration-300 ${
+      hovered ? "group-hover:border-violet-600 group-hover:shadow-2xl group-hover:shadow-violet-400/50" : ""
     }`,
   previewImage:
     "w-full h-full object-cover cursor-pointer group-hover:scale-110 transition-transform duration-300",
   overlay:
-    "absolute inset-0 bg-black/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center",
+    "absolute inset-0 bg-gradient-to-t from-violet-900/60 via-purple-900/30 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center",
   actionButton: (bg, hoverBg, textColor) =>
-    `w-10 h-10 flex items-center justify-center bg-${bg} text-${textColor} rounded-full hover:bg-${hoverBg} transition-all`,
+    `w-11 h-11 flex items-center justify-center bg-${bg} text-${textColor} rounded-full hover:bg-${hoverBg} transition-all shadow-xl hover:scale-110`,
 }
 
 export const titleInputStyles = {
@@ -555,16 +552,16 @@ export const titleInputStyles = {
 
 export const modalStyles = {
   overlay:
-    "fixed inset-0 flex items-center justify-center w-full h-full bg-black/60 backdrop-blur-sm z-50",
+    "fixed inset-0 flex items-center justify-center w-full h-full bg-gradient-to-br from-black/70 via-violet-900/30 to-purple-900/30 backdrop-blur-lg z-50",
   container:
-    "relative flex flex-col bg-white/95 backdrop-blur-xl shadow-2xl rounded-3xl overflow-hidden border border-violet-100 max-w-[95vw] max-h-[95vh]",
+    "relative flex flex-col bg-white/98 backdrop-blur-2xl shadow-2xl rounded-3xl overflow-hidden border-3 border-violet-300 max-w-[95vw] max-h-[95vh]",
   header:
-    "flex items-center justify-between p-6 border-b border-violet-100 bg-gradient-to-r from-white to-violet-50",
-  title: "text-xl font-black text-slate-900",
+    "flex items-center justify-between p-6 border-b-2 border-violet-300 bg-gradient-to-r from-white via-violet-50 to-purple-100",
+  title: "text-2xl font-black bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 bg-clip-text text-transparent drop-shadow-sm",
   actionButton:
-    "flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-bold rounded-xl hover:scale-105 transition-all shadow-lg mr-12",
+    "flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 text-white font-bold rounded-xl hover:scale-105 hover:shadow-xl hover:shadow-violet-400/50 transition-all mr-12",
   closeButton:
-    "absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-white/80 hover:bg-red-50 text-slate-400 hover:text-red-500 rounded-xl transition-all shadow-lg hover:scale-110 z-10",
+    "absolute top-4 right-4 w-12 h-12 flex items-center justify-center bg-white hover:bg-red-50 text-slate-400 hover:text-red-500 rounded-xl transition-all shadow-xl hover:scale-110 border-2 border-violet-200 hover:border-red-400 z-10",
   body: "flex-1 overflow-y-auto",
 }
 

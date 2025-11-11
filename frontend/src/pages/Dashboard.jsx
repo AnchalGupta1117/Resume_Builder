@@ -12,6 +12,7 @@ import toast from 'react-hot-toast';
 import moment from 'moment';
 import Modal from '../components/Modal.jsx'
 import CreateResumeForm from '../components/createResumesForm';
+import { DashboardSkeleton } from '../components/SkeletonLoader';
 
 
 
@@ -170,9 +171,7 @@ const fetchAllResumes=async()=>{
 
             {/*Loading State*/}
             {loading && (
-                <div className={styles.spinnerWrapper}>
-                    <div className={styles.spinner}></div>
-                </div>
+                <DashboardSkeleton />
             )}
 
             {/* EMPTY STATE*/}

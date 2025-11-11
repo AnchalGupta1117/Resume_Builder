@@ -16,19 +16,12 @@ const Modal = ({
   if (!isOpen) return null
 
   return (
-    <div
-      className={
-        styles.overlay +
-        " fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
-      }
-    >
-      <div
-        className={" bg-blue-50 rounded-lg shadow-lg relative w-full p-6 m-20"}
-      >
+    <div className={styles.overlay}>
+      <div className={styles.container}>
         {/* Close Button */}
         <button
           type="button"
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+          className={styles.closeButton}
           onClick={onClose}
         >
           <X size={20} />
@@ -36,7 +29,7 @@ const Modal = ({
 
         {/* Header */}
         {!hideHeader && (
-          <div className="flex justify-between items-center  mb-4">
+          <div className={styles.header}>
             <h3 className={styles.title}>{title}</h3>
             {showActionBtn && (
               <button className={styles.actionButton} onClick={onActionClick}>
@@ -48,7 +41,7 @@ const Modal = ({
         )}
 
         {/* Body */}
-        <div className="text-center">{children}</div>
+        <div className={styles.body}>{children}</div>
       </div>
     </div>
   )

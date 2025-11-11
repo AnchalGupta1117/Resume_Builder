@@ -24,7 +24,12 @@ const LandingPage = () => {
     } else {
       setOpenAuthModal(true);  // open login/signup modal if not logged in
     }
-};
+  };
+
+  const handleViewTemplates = () => {
+    // Navigate to templates page
+    navigate('/templates');
+  };
 
 
 
@@ -106,14 +111,14 @@ const LandingPage = () => {
               </div>
 
               <h1 className={landingPageStyles.heading}>
-                <span className={landingPageStyles.headingText}> Craft</span>
-                <span className={landingPageStyles.headingGradient}>Professional</span>
-                <span className={landingPageStyles.headingText}> Resumes</span>
+                <span className={landingPageStyles.headingText}>Create Your</span>
+                <span className={landingPageStyles.headingGradient}>Dream Resume</span>
+                <span className={landingPageStyles.headingText}>In Minutes</span>
               </h1>
 
               <p className={landingPageStyles.description}>
-                Create job-winning resumes with expertly designed templates.
-                ATS-friendly,recruiters approved, and tailored to your career goals.
+                Build professional, ATS-optimized resumes that land interviews. 
+                <span className="block mt-2">Trusted by 80,000+ job seekers to craft winning resumes! 🎯</span>
               </p>
 
               <div className={landingPageStyles.ctaButtons}>
@@ -128,7 +133,7 @@ const LandingPage = () => {
                 </button>
 
                 <button className={landingPageStyles.secondaryButton} 
-                  onClick={() => handleCTA()}> 
+                  onClick={handleViewTemplates}> 
                     View Templates
                   </button>
               </div>
@@ -226,7 +231,7 @@ const LandingPage = () => {
         </section>
 
         {/* FEATURES SECTIONS */}
-        <section className={landingPageStyles.featuresSection}>
+        <section id="features-section" className={landingPageStyles.featuresSection}>
           <div className={landingPageStyles.featuresContainer}>
             <div className={landingPageStyles.featuresHeader}>
               <h2 className={landingPageStyles.featuresTitle}>

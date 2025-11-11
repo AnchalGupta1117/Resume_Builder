@@ -484,6 +484,7 @@ const EditResumes = () => {
   }
   //UPDATE THE SECTION STATE
   const updateSection = (section, key, value) => {
+    console.log(`Updating ${section}.${key} with:`, value)
     setResumeData((prev) => ({
       ...prev,
       [section]: {
@@ -494,6 +495,7 @@ const EditResumes = () => {
   }
   //UPDATE ARRAY ITEMS STATE USING INDEX
   const updateArrayItem = (section, index, key, value) => {
+    console.log(`Updating ${section}[${index}].${key} with:`, value)
     setResumeData((prev) => {
       const updatedArray = [...prev[section]]
 
@@ -533,9 +535,12 @@ const EditResumes = () => {
   //FETCH REUME DETAILS BY USING ID OR BACKEND URL
   const fetchResumeDetailsById = async () => {
     try {
+      console.log("Fetching resume with ID:", resumeId)
       const response = await axiosInstance.get(
         API_PATHS.RESUME.GET_BY_ID(resumeId)
       )
+
+      console.log("Fetched resume data:", response.data)
 
       if (response.data && response.data.profileInfo) {
         const resumeInfo = response.data
@@ -556,6 +561,8 @@ const EditResumes = () => {
           languages: resumeInfo?.languages || prevState?.languages,
           interests: resumeInfo?.interests || prevState?.interests,
         }))
+        
+        console.log("Resume state updated successfully")
       }
     } catch (error) {
       console.error("Error fetching resume:", error)
@@ -618,13 +625,18 @@ await new Promise((resolve) => setTimeout(resolve, 300))
       )
 
       const { thumbnailLink } = uploadResponse.data
-      await updateResumeDetails(thumbnailLink)
+      
+      console.log("Saving resume data:", resumeData)
+      const savedData = await updateResumeDetails(thumbnailLink)
+      console.log("Resume saved with data:", savedData)
 
       toast.success("Resume Updated Successfully")
       navigate("/dashboard")
     } catch (error) {
       console.error("Error Uploading Images:", error)
-      toast.error("Failed to upload images")
+      console.error("Error response:", error.response?.data)
+      console.error("Error status:", error.response?.status)
+      toast.error(error.response?.data?.message || "Failed to upload images")
     } finally {
       setIsLoading(false)
     }
@@ -634,14 +646,32 @@ await new Promise((resolve) => setTimeout(resolve, 300))
     try {
       setIsLoading(true)
 
-      await axiosInstance.put(API_PATHS.RESUME.UPDATE(resumeId), {
+      const dataToSave = {
         ...resumeData,
         thumbnailLink: thumbnailLink || "",
         completion: completionPercentage,
-      })
+      }
+      
+      console.log("=== SAVING RESUME DATA ===")
+      console.log("Title:", dataToSave.title)
+      console.log("Profile Info:", dataToSave.profileInfo)
+      console.log("Contact Info:", dataToSave.contactInfo)
+      console.log("Work Experience:", dataToSave.workExperience)
+      console.log("Education:", dataToSave.education)
+      console.log("Skills:", dataToSave.skills)
+      console.log("Full data being sent:", dataToSave)
+
+      const response = await axiosInstance.put(API_PATHS.RESUME.UPDATE(resumeId), dataToSave)
+      
+      console.log("=== SAVE RESPONSE ===")
+      console.log("Saved successfully:", response.data)
+      return response.data
     } catch (err) {
+      console.error("=== SAVE ERROR ===")
       console.error("Error updating resume:", err)
+      console.error("Error response:", err.response?.data)
       toast.error("Failed to update resume details")
+      throw err
     } finally {
       setIsLoading(false)
     }

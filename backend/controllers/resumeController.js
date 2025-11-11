@@ -115,22 +115,51 @@ export const getResumeById = async (req, res) => {
 //UPDATE RESUME
 export const updatedResume = async (req, res) => {
     try {
-        const updatedResume = await Resume.findOne({
+        console.log("=== UPDATE RESUME REQUEST ===");
+        console.log("Resume ID:", req.params.id);
+        console.log("User ID:", req.user._id);
+        console.log("Request body keys:", Object.keys(req.body));
+        console.log("Profile Info from request:", req.body.profileInfo);
+        console.log("Contact Info from request:", req.body.contactInfo);
+        
+        const resume = await Resume.findOne({
             _id: req.params.id,
-            userId: req.user._id},
-            req.body,
-            {new: true}
-        );  
-        if (!updatedResume) {
+            userId: req.user._id
+        });
+        
+        if (!resume) {
+            console.log("Resume not found!");
             return res.status(404).json({message: 'Resume not found or unauthorized'});
         }
-        //MERGE UPDATED RESUMES
-        Object.assign(updatedResume, req.body);
+        
+        console.log("Resume found, current data:", {
+            title: resume.title,
+            profileInfo: resume.profileInfo,
+            contactInfo: resume.contactInfo
+        });
+        
+        //MERGE UPDATED DATA
+        Object.assign(resume, req.body);
+        
+        console.log("After merge, before save:", {
+            title: resume.title,
+            profileInfo: resume.profileInfo,
+            contactInfo: resume.contactInfo
+        });
+        
         //SAVE UPDATED RESUME
-        await updatedResume.save();
-        res.json(updatedResume);
+        const savedResume = await resume.save();
+        
+        console.log("=== RESUME SAVED SUCCESSFULLY ===");
+        console.log("Saved resume ID:", savedResume._id);
+        console.log("Saved title:", savedResume.title);
+        console.log("Saved profile info:", savedResume.profileInfo);
+        
+        res.json(savedResume);
     }
     catch (error) {
+        console.error("=== UPDATE ERROR ===");
+        console.error("Error updating resume:", error);
         res.status(500).json({message: 'failed to update resume', error: error.message});
     }
 };
