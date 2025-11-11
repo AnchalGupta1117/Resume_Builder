@@ -1,4 +1,7 @@
-export const BASE_URL = 'http://localhost:4000';
+// Use Vercel API in production, localhost in development
+export const BASE_URL = import.meta.env.MODE === 'production' 
+  ? '' // Empty string means same domain (Vercel will route /api/* to backend)
+  : 'http://localhost:4000';
 
 // ROUTES USER FOR FRONTEND
 export const API_PATHS = {
