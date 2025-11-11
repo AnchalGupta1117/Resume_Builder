@@ -11,11 +11,29 @@ const { connectDB } = require('./config/db');
 dotenv.config({ path: path.join(__dirname, '.env') });
 
 const app = express();
-app.use(cors());
+
+// CORS configuration for Vercel
+app.use(cors({
+  origin: '*',
+  credentials: true
+}));
+
 app.use(express.json());
 
-// Connect DB
-connectDB();
+// Lazy DB connection for serverless
+let dbConnected = false;
+const ensureDbConnection = async () => {
+  if (!dbConnected) {
+    await connectDB();
+    dbConnected = true;
+  }
+};
+
+// Middleware to ensure DB connection
+app.use(async (req, res, next) => {
+  await ensureDbConnection();
+  next();
+});
 
 // API routes
 app.use('/api/auth', userRouter);
@@ -33,8 +51,8 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'Backend is working!' });
 });
 
-app.get('/', (req, res) => {
-  res.send('API WORKING');
+app.get('/api', (req, res) => {
+  res.json({ status: 'API is running', timestamp: new Date().toISOString() });
 });
 
 module.exports = app; // Required for Vercel
