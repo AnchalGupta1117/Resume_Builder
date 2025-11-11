@@ -1,8 +1,8 @@
-import Resume from '../models/resumeModel.js';
-import fs from 'fs';
-import path, { basename } from 'path';
+const Resume = require('../models/resumeModel');
+const fs = require('fs');
+const path = require('path');
 
-export const createResume = async (req, res) => {
+const createResume = async (req, res) => {
     try {
         const {title} = req.body;
 
@@ -83,7 +83,7 @@ export const createResume = async (req, res) => {
 };
 
 //GET FUNCTION
-export const getUserResumes = async (req, res) => {
+const getUserResumes = async (req, res) => {
     try {
         const resumes = await Resume.find({userId: req.user._id}).sort({
             updatedAt: -1
@@ -96,7 +96,7 @@ export const getUserResumes = async (req, res) => {
 };
 
 //GET RESUME BY ID
-export const getResumeById = async (req, res) => {
+const getResumeById = async (req, res) => {
     try {
         const resume =  await Resume.findOne({_id: req.params.id,
     userId: req.user._id}
@@ -113,7 +113,7 @@ export const getResumeById = async (req, res) => {
     }
 };
 //UPDATE RESUME
-export const updatedResume = async (req, res) => {
+const updatedResume = async (req, res) => {
     try {
         console.log("=== UPDATE RESUME REQUEST ===");
         console.log("Resume ID:", req.params.id);
@@ -165,7 +165,7 @@ export const updatedResume = async (req, res) => {
 };
 
 //DELETE RESUME
-export const deleteResume = async (req, res) => {
+const deleteResume = async (req, res) => {
     try {
         const deletedResume = await Resume.findOne({
             _id: req.params.id,
@@ -205,4 +205,12 @@ export const deleteResume = async (req, res) => {
     catch (error) {
         res.status(500).json({message: 'failed to delete resume', error: error.message});
     }
-}; 
+};
+
+module.exports = {
+    createResume,
+    getUserResumes,
+    getResumeById,
+    updatedResume,
+    deleteResume
+};

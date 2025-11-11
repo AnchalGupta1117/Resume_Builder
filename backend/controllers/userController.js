@@ -1,6 +1,6 @@
-import { User } from "../models/userModel.js";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+const { User } = require('../models/userModel');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 //GENERATE JWT TOKEN
 const generateToken = (userId) => {
@@ -9,8 +9,7 @@ const generateToken = (userId) => {
     });
 }
 
-
-export const registerUser = async (req, res) => {
+const registerUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
@@ -48,7 +47,7 @@ export const registerUser = async (req, res) => {
     }
 };
 //LOGIN FUNCTION
-export const loginUser = async (req, res) => {
+const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
@@ -78,7 +77,7 @@ export const loginUser = async (req, res) => {
 }
 
 //GET USER PROFILE FUNCTION
-export const getUserProfile = async (req, res) => {
+const getUserProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
         if (!user) {
@@ -92,4 +91,6 @@ export const getUserProfile = async (req, res) => {
         });
     }   
 }
+
+module.exports = { registerUser, loginUser, getUserProfile };
 
