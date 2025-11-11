@@ -1,7 +1,15 @@
-const app = require('../backend/index');
-
-// Export as Vercel serverless handler
-module.exports = app;
-
-// Also export as default for Vercel
-module.exports.default = app;
+// Import and export the Express app for Vercel
+try {
+  const app = require('../backend/index');
+  module.exports = app;
+} catch (error) {
+  console.error('Failed to load backend:', error);
+  // Export a minimal error handler
+  module.exports = (req, res) => {
+    res.status(500).json({
+      error: 'Backend initialization failed',
+      message: error.message,
+      stack: error.stack
+    });
+  };
+}

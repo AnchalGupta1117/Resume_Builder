@@ -7,8 +7,12 @@ const userRouter = require('./routes/userRoutes');
 const resumeRoutes = require('./routes/resumeRoutes');
 const { connectDB } = require('./config/db');
 
-// Load .env
-dotenv.config({ path: path.join(__dirname, '.env') });
+// Load .env (but don't crash if file doesn't exist on Vercel)
+try {
+  dotenv.config({ path: path.join(__dirname, '.env') });
+} catch (err) {
+  console.log('No .env file found (using environment variables)');
+}
 
 // Log environment check (but don't crash if undefined)
 try {
