@@ -67,8 +67,9 @@ app.use((req, res, next) => {
 app.use('/api/auth', userRouter);
 app.use('/api/resumes', resumeRoutes);
 
-// Static uploads
-app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
+// Static uploads - use /tmp on Vercel, local uploads in dev
+const uploadsPath = process.env.VERCEL ? '/tmp/uploads' : path.join(__dirname, 'uploads');
+app.use('/uploads', express.static(uploadsPath, {
   setHeaders: (res, _path) => {
     res.set('Access-Control-Allow-Origin', '*');
   }
