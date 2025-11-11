@@ -30,18 +30,23 @@ const handleSignUp = async (e) => {
         setError('Password is required');
         return;
     }
-    if (password.length < 6) {
-        setError('Password must be at least 6 characters long');
+    if (password.length < 8) {
+        setError('Password must be at least 8 characters long');
         return;
     }   
     setError(null);
 
     try {
+        console.log('Attempting registration with:', { name: fullName, email });
+        console.log('API URL:', axiosInstance.defaults.baseURL + API_PATHS.AUTH.REGISTER);
+        
         const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER,{
             name: fullName,
             email,
             password,
         });
+        
+        console.log('Registration response:', response.data);
         const { token } = response.data;
         if (token) {
             localStorage.setItem('token', token);
@@ -49,6 +54,9 @@ const handleSignUp = async (e) => {
             navigate('/dashboard');
         }
     } catch (err) {
+        console.error('Registration error:', err);
+        console.error('Error response:', err.response?.data);
+        console.error('Error status:', err.response?.status);
         setError(err.response?.data?.message || 'Registration failed. Please try again.');
     }
 };
