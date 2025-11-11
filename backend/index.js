@@ -10,10 +10,14 @@ const { connectDB } = require('./config/db');
 // Load .env
 dotenv.config({ path: path.join(__dirname, '.env') });
 
-// Log environment check
-console.log('Environment check:');
-console.log('- MONGO_URI:', process.env.MONGO_URI ? '✓ Set' : '✗ Missing');
-console.log('- JWT_SECRET:', process.env.JWT_SECRET ? '✓ Set' : '✗ Missing');
+// Log environment check (but don't crash if undefined)
+try {
+  console.log('Environment check:');
+  console.log('- MONGO_URI:', process.env.MONGO_URI ? '✓ Set' : '✗ Missing');
+  console.log('- JWT_SECRET:', process.env.JWT_SECRET ? '✓ Set' : '✗ Missing');
+} catch (err) {
+  console.error('Environment check error:', err);
+}
 
 const app = express();
 
@@ -29,15 +33,30 @@ app.use(express.json());
 let dbConnected = false;
 const ensureDbConnection = async () => {
   if (!dbConnected) {
-    await connectDB();
-    dbConnected = true;
+    try {
+      await connectDB();
+      dbConnected = true;
+    } catch (error) {
+      console.error('DB connection failed:', error);
+      // Don't set dbConnected to true on failure
+    }
   }
 };
 
-// Middleware to ensure DB connection
-app.use(async (req, res, next) => {
-  await ensureDbConnection();
-  next();
+// Middleware to ensure DB connection (but don't block on failure)
+app.use((req, res, next) => {
+  // Skip DB connection for health check endpoints
+  if (req.path === '/api/test' || req.path === '/api/env-check' || req.path === '/api') {
+    return next();
+  }
+  
+  // For other routes, ensure DB connection
+  ensureDbConnection()
+    .then(() => next())
+    .catch((err) => {
+      console.error('DB middleware error:', err);
+      next(); // Continue anyway, let route handlers deal with it
+    });
 });
 
 // API routes
