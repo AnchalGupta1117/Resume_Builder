@@ -10,6 +10,11 @@ const { connectDB } = require('./config/db');
 // Load .env
 dotenv.config({ path: path.join(__dirname, '.env') });
 
+// Log environment check
+console.log('Environment check:');
+console.log('- MONGO_URI:', process.env.MONGO_URI ? '✓ Set' : '✗ Missing');
+console.log('- JWT_SECRET:', process.env.JWT_SECRET ? '✓ Set' : '✗ Missing');
+
 const app = express();
 
 // CORS configuration for Vercel
@@ -49,6 +54,16 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
 // Health check
 app.get('/api/test', (req, res) => {
   res.json({ message: 'Backend is working!' });
+});
+
+// Environment check endpoint
+app.get('/api/env-check', (req, res) => {
+  res.json({
+    mongoUri: process.env.MONGO_URI ? 'Set ✓' : 'Missing ✗',
+    jwtSecret: process.env.JWT_SECRET ? 'Set ✓' : 'Missing ✗',
+    nodeEnv: process.env.NODE_ENV || 'development',
+    mongooseConnected: require('mongoose').connection.readyState === 1 ? 'Connected ✓' : 'Disconnected ✗'
+  });
 });
 
 app.get('/api', (req, res) => {
