@@ -8,10 +8,17 @@ const connectDB = async () => {
     }
     
     console.log('Attempting to connect to MongoDB...');
-    await mongoose.connect(process.env.MONGO_URI);
+    
+    // Add connection options for better compatibility
+    await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+      socketTimeoutMS: 45000,
+    });
+    
     console.log('✅ DB CONNECTED');
   } catch (error) {
     console.error('❌ MongoDB connection error:', error.message);
+    console.error('Full error:', error);
     // Don't throw in serverless - let individual requests handle it
   }
 };

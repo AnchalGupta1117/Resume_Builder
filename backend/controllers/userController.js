@@ -12,6 +12,17 @@ const generateToken = (userId) => {
 const registerUser = async (req, res) => {
     try {
         console.log('Registration attempt:', { name: req.body.name, email: req.body.email });
+        
+        // Check if MongoDB is connected
+        const mongoose = require('mongoose');
+        if (mongoose.connection.readyState !== 1) {
+            console.error('MongoDB not connected! State:', mongoose.connection.readyState);
+            return res.status(503).json({ 
+                message: "Database connection unavailable. Please check MongoDB Atlas network access settings.",
+                hint: "Whitelist 0.0.0.0/0 in MongoDB Atlas Network Access"
+            });
+        }
+        
         const { name, email, password } = req.body;
 
         //CHECK IF USER ALREADY EXISTS
