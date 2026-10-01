@@ -17,9 +17,16 @@ const registerUser = async (req, res) => {
         const mongoose = require('mongoose');
         if (mongoose.connection.readyState !== 1) {
             console.error('MongoDB not connected! State:', mongoose.connection.readyState);
+            const { getLastConnectAttempt } = require('../config/db');
+            const lastConnectAttempt = getLastConnectAttempt();
+            // #region agent log
+            fetch('http://127.0.0.1:7419/ingest/74647587-0d97-4ca8-8a79-aa1b65fb8650',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3fc992'},body:JSON.stringify({sessionId:'3fc992',hypothesisId:'C',location:'backend/controllers/userController.js:registerUser',message:'register blocked: db not ready',data:{readyState:mongoose.connection.readyState,lastConnectAttempt},timestamp:Date.now()})}).catch(()=>{});
+            // #endregion
             return res.status(503).json({ 
                 message: "Database connection unavailable. Please check MongoDB Atlas network access settings.",
-                hint: "Whitelist 0.0.0.0/0 in MongoDB Atlas Network Access"
+                hint: "Whitelist 0.0.0.0/0 in MongoDB Atlas Network Access",
+                readyState: mongoose.connection.readyState,
+                lastConnectAttempt,
             });
         }
         

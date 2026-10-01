@@ -39,6 +39,16 @@ const handleSignUp = async (e) => {
     try {
         console.log('Attempting registration with:', { name: fullName, email });
         console.log('API URL:', axiosInstance.defaults.baseURL + API_PATHS.AUTH.REGISTER);
+
+        // #region agent log
+        try {
+          const envRes = await fetch((axiosInstance.defaults.baseURL || '') + '/api/env-check');
+          const envData = await envRes.json();
+          fetch('http://127.0.0.1:7419/ingest/74647587-0d97-4ca8-8a79-aa1b65fb8650',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3fc992'},body:JSON.stringify({sessionId:'3fc992',hypothesisId:'A',location:'SignUp.jsx:handleSignUp:env-check',message:'env-check before register',data:{status:envRes.status,envData,origin:window.location.origin},timestamp:Date.now()})}).catch(()=>{});
+        } catch (envErr) {
+          fetch('http://127.0.0.1:7419/ingest/74647587-0d97-4ca8-8a79-aa1b65fb8650',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3fc992'},body:JSON.stringify({sessionId:'3fc992',hypothesisId:'A',location:'SignUp.jsx:handleSignUp:env-check-fail',message:'env-check request failed',data:{error:String(envErr)},timestamp:Date.now()})}).catch(()=>{});
+        }
+        // #endregion
         
         const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER,{
             name: fullName,
@@ -57,6 +67,9 @@ const handleSignUp = async (e) => {
         console.error('Registration error:', err);
         console.error('Error response:', err.response?.data);
         console.error('Error status:', err.response?.status);
+        // #region agent log
+        fetch('http://127.0.0.1:7419/ingest/74647587-0d97-4ca8-8a79-aa1b65fb8650',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3fc992'},body:JSON.stringify({sessionId:'3fc992',hypothesisId:'B',location:'SignUp.jsx:handleSignUp:catch',message:'register failed',data:{status:err.response?.status,body:err.response?.data,code:err.code},timestamp:Date.now()})}).catch(()=>{});
+        // #endregion
         setError(err.response?.data?.message || 'Registration failed. Please try again.');
     }
 };
@@ -64,7 +77,7 @@ const handleSignUp = async (e) => {
   return (
     // <div className={styles.signupContainer}>
     <div className={styles.container}>
-    <div className="w-[90vw] md:w-[400px] bg-white/10 backdrop-blur-lg p-8 rounded-3xl border border-violet-100 shadow-2xl">
+    <div className="w-[90vw] md:w-[400px] bg-white/10 backdrop-blur-lg p-8 rounded-3xl border border-purple-200 shadow-2xl">
      
         <div className={styles.headerWrapper}>
             <h3 className={styles.signupTitleTitle}>Create Account</h3>

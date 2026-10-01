@@ -5,7 +5,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const userRouter = require('./routes/userRoutes');
 const resumeRoutes = require('./routes/resumeRoutes');
-const { connectDB } = require('./config/db');
+const { connectDB, getLastConnectAttempt } = require('./config/db');
 
 // Load .env (but don't crash if file doesn't exist on Vercel)
 try {
@@ -39,10 +39,13 @@ const ensureDbConnection = async () => {
   if (!dbConnected) {
     try {
       await connectDB();
-      dbConnected = true;
+      dbConnected = require('mongoose').connection.readyState === 1;
+      // #region agent log
+      fetch('http://127.0.0.1:7419/ingest/74647587-0d97-4ca8-8a79-aa1b65fb8650',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'3fc992'},body:JSON.stringify({sessionId:'3fc992',runId:'post-fix',hypothesisId:'D',location:'backend/index.js:ensureDbConnection',message:'ensureDbConnection finished',data:{dbConnected,readyState:require('mongoose').connection.readyState,lastConnectAttempt:getLastConnectAttempt()},timestamp:Date.now()})}).catch(()=>{});
+      // #endregion
     } catch (error) {
+      dbConnected = false;
       console.error('DB connection failed:', error);
-      // Don't set dbConnected to true on failure
     }
   }
 };
@@ -50,7 +53,7 @@ const ensureDbConnection = async () => {
 // Middleware to ensure DB connection (but don't block on failure)
 app.use((req, res, next) => {
   // Skip DB connection for health check endpoints
-  if (req.path === '/api/test' || req.path === '/api/env-check' || req.path === '/api') {
+  if (req.path === '/api/test' || req.path === '/api') {
     return next();
   }
   
@@ -86,7 +89,10 @@ app.get('/api/env-check', (req, res) => {
     mongoUri: process.env.MONGO_URI ? 'Set ✓' : 'Missing ✗',
     jwtSecret: process.env.JWT_SECRET ? 'Set ✓' : 'Missing ✗',
     nodeEnv: process.env.NODE_ENV || 'development',
-    mongooseConnected: require('mongoose').connection.readyState === 1 ? 'Connected ✓' : 'Disconnected ✗'
+    mongooseConnected: require('mongoose').connection.readyState === 1 ? 'Connected ✓' : 'Disconnected ✗',
+    readyState: require('mongoose').connection.readyState,
+    dbConnectedFlag: dbConnected,
+    lastConnectAttempt: getLastConnectAttempt(),
   });
 });
 

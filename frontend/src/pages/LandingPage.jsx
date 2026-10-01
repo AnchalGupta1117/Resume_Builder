@@ -9,6 +9,7 @@ import { Zap, Download } from 'lucide-react';
 import Modal from '../components/Modal';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
+import DarkModeToggle from '../components/DarkModeToggle';
 
 
 const LandingPage = () => {
@@ -48,15 +49,19 @@ const LandingPage = () => {
             </span>
           </div>
           {/* MOBILE MENU BUTTON */}
-          <button className={landingPageStyles.mobileMenuButton}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              {mobileMenuOpen ? 
-              <X size={24} className={landingPageStyles.mobileMenuIcon} /> :
-              <Menu size={24} className={landingPageStyles.mobileMenuIcon} />}
-          </button>
+          <div className='flex items-center gap-3 md:hidden'>
+            <DarkModeToggle />
+            <button className={landingPageStyles.mobileMenuButton}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                {mobileMenuOpen ? 
+                <X size={24} className={landingPageStyles.mobileMenuIcon} /> :
+                <Menu size={24} className={landingPageStyles.mobileMenuIcon} />}
+            </button>
+          </div>
 
           {/* DESKTOP NAVIGATION LINKS */}
-          <div className=' hidden md:flex items-center' >
+          <div className=' hidden md:flex items-center gap-4' >
+            <DarkModeToggle />
             {user ? (
               <ProfileInfoCard />
             ) : (
@@ -72,6 +77,9 @@ const LandingPage = () => {
         {mobileMenuOpen && (
           <div className={landingPageStyles.mobileMenu}>
             <div className={landingPageStyles.mobileMenuContainer}>
+              <div className="mb-4 flex justify-center">
+                <DarkModeToggle />
+              </div>
               {user ? (
                 <div className={landingPageStyles.mobileUserInfo}>
                   <div className={landingPageStyles.mobileUserWelcome}>
@@ -107,18 +115,18 @@ const LandingPage = () => {
             {/* LEFT CONTENT */}
             <div className={landingPageStyles.heroLeft}>
               <div className={landingPageStyles.tagline}>
-                Professional Resume Builder
+                ✨ Your Career Journey Starts Here
               </div>
 
               <h1 className={landingPageStyles.heading}>
-                <span className={landingPageStyles.headingText}>Create Your</span>
-                <span className={landingPageStyles.headingGradient}>Dream Resume</span>
-                <span className={landingPageStyles.headingText}>In Minutes</span>
+                <span className={landingPageStyles.headingText}>Transform Your</span>
+                <span className={landingPageStyles.headingGradient}>Career Story</span>
+                <span className={landingPageStyles.headingText}>Into Success</span>
               </h1>
 
               <p className={landingPageStyles.description}>
-                Build professional, ATS-optimized resumes that land interviews. 
-                <span className="block mt-2">Trusted by 80,000+ job seekers to craft winning resumes! 🎯</span>
+                Craft stunning, ATS-friendly resumes that make recruiters stop scrolling. 
+                <span className="block mt-2">Join 100K+ professionals who've unlocked their dream opportunities with beautifully designed resumes.</span>
               </p>
 
               <div className={landingPageStyles.ctaButtons}>
@@ -127,23 +135,23 @@ const LandingPage = () => {
                   <div className={landingPageStyles.primaryButtonOverlay}>
                   </div>
                   <span className={landingPageStyles.primaryButtonContent}>
-                    Start Building
+                    Begin Your Journey
                     <ArrowRight className={landingPageStyles.primaryButtonIcon } size={18}  />
                   </span>
                 </button>
 
                 <button className={landingPageStyles.secondaryButton} 
                   onClick={handleViewTemplates}> 
-                    View Templates
+                    Explore Designs
                   </button>
               </div>
 
                 {/* STATS GRID */}
                 <div className={landingPageStyles.statsContainer}>{
                   [
-                    { value: '50K+', label: 'Resumes Created', gradient: 'from-violet-600 to-fuchsia-600' },
-                    { value: '4.9★', label: 'User Rating', gradient: 'from-orange-500 to-red-500' },
-                    { value: '5 Min', label: 'Build Time', gradient: 'from-emerald-500 to-teal-500' }
+                    { value: '100K+', label: 'Resumes Crafted', gradient: 'from-purple-600 via-pink-600 to-blue-600 dark:from-purple-400 dark:via-pink-400 dark:to-blue-400' },
+                    { value: '4.9★', label: 'Trusted Rating', gradient: 'from-purple-600 via-pink-600 to-blue-600 dark:from-purple-400 dark:via-pink-400 dark:to-blue-400' },
+                    { value: '5 Min', label: 'Quick Build', gradient: 'from-purple-600 via-pink-600 to-blue-600 dark:from-purple-400 dark:via-pink-400 dark:to-blue-400' }
                   ].map((stat, idx) => (
                     <div key={idx} className={landingPageStyles.statItem}>
                       <div className={`${landingPageStyles.statNumber}${stat.gradient}`}>
@@ -170,8 +178,9 @@ const LandingPage = () => {
                                     {/* Background */}
                                     <defs>
                                         <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stopColor="#8b5cf6" />
-                                            <stop offset="100%" stopColor="#d946ef" />
+                                            <stop offset="0%" stopColor="#7C3AED" />
+                                            <stop offset="50%" stopColor="#EC4899" />
+                                            <stop offset="100%" stopColor="#3B82F6" />
                                         </linearGradient>
                                         <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                             <stop offset="0%" stopColor="#ffffff" />
@@ -235,34 +244,34 @@ const LandingPage = () => {
           <div className={landingPageStyles.featuresContainer}>
             <div className={landingPageStyles.featuresHeader}>
               <h2 className={landingPageStyles.featuresTitle}>
-                Why Choose <span className={landingPageStyles.featuresTitleGradient}>
-                  ResumeXpert?
+                Why Professionals Choose <span className={landingPageStyles.featuresTitleGradient}>
+                  ResumeXpert
                 </span>
               </h2>
               <p className={landingPageStyles.featuresDescription}>
-                Everything you need to create a Professional resume that stands out
+                Experience the perfect blend of elegance and functionality. Every detail crafted to help you shine.
               </p>
             </div>
             <div className={landingPageStyles.featuresGrid}>
               {[
                                 {
                                     icon: <Zap className={landingPageStyles.featureIcon} />,
-                                    title: "Lightning Fast",
-                                    description: "Create professional resumes in under 5 minutes with our streamlined process",
+                                    title: "Lightning Speed",
+                                    description: "Go from blank page to interview-ready resume in just 5 minutes. No design skills needed.",
                                     gradient: landingPageStyles.featureIconViolet,
                                     bg: landingPageStyles.featureCardViolet
                                 },
                                 {
                                     icon: <LayoutTemplate className={landingPageStyles.featureIcon} />,
-                                    title: "Pro Templates",
-                                    description: "Choose from dozens of recruiter-approved, industry-specific templates",
+                                    title: "Premium Designs",
+                                    description: "Curated collection of stunning templates designed by industry experts. Make a lasting first impression.",
                                     gradient: landingPageStyles.featureIconFuchsia,
                                     bg: landingPageStyles.featureCardFuchsia
                                 },
                                 {
                                     icon: <Download className={landingPageStyles.featureIcon} />,
-                                    title: "Instant Export",
-                                    description: "Download high-quality PDFs instantly with perfect formatting",
+                                    title: "One-Click Export",
+                                    description: "Download publication-ready PDFs with pixel-perfect formatting. Print or share digitally with confidence.",
                                     gradient: landingPageStyles.featureIconOrange,
                                     bg: landingPageStyles.featureCardOrange
                                 }
@@ -290,14 +299,14 @@ const LandingPage = () => {
               <div className={landingPageStyles.ctaCardBg}></div>
               <div className={landingPageStyles.ctaCardContent}>
                 <h2 className={landingPageStyles.ctaTitle}>
-                  Ready to Build Your Dream <span className={landingPageStyles.ctaTitleGradient}>Standout Resume</span>?
+                  Your Next Career Breakthrough <span className={landingPageStyles.ctaTitleGradient}>Starts Here</span>
                 </h2>
                 <p className={landingPageStyles.ctaDescription}>
-                  Join thousands of professionals who have landed their dream jobs with our ResumeXpert.
+                  Don't let another opportunity slip away. Create a resume that opens doors and accelerates your career journey.
                 </p>
                 <button className={landingPageStyles.ctaButton} onClick={handleCTA}>
                   <div className={landingPageStyles.ctaButtonOverlay}></div>
-                  <span className={landingPageStyles.ctaButtonText}> Start Building Now</span>
+                  <span className={landingPageStyles.ctaButtonText}> Create Your Resume Now</span>
                 </button>
               </div>
             </div>

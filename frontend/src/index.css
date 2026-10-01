@@ -1,27 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 @import "tailwindcss";
 
 @theme {
-    --font-display: "Urbanist", sans-serif;
+    --font-display: "Inter", "Poppins", system-ui, -apple-system, sans-serif;
     --breakpoint-3xl: 1920px;
-    --color-primary: #9328E7
+    --color-primary: #7C3AED
 }
 
 @layer base {
     html {
         font-family: var(--font-display);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
     body {
-        background-color: #fcfbfc;
+        background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 50%, #E9D5FF 100%);
         overflow-x: hidden;
         transition: background-color 0.3s ease, color 0.3s ease;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        min-height: 100vh;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
     }
 
     /* Dark mode styles */
     .dark body {
-        background-color: #0f172a;
+        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
         color: #e2e8f0;
     }
 
@@ -36,7 +47,7 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba((100, 100, 100, 0.4));
+    background-color: rgba(124, 58, 237, 0.5);
     border-radius: 10px
 }
 
@@ -63,23 +74,23 @@
 }
 
 .input-box {
-    @apply w-full flex justify-between gap-3 text-sm text-black bg-gray-50/50 rounded px-4 py-3 mb-4 mt-3 border border-gray-100 outline-none focus-within:border-purple-300;
+    @apply w-full flex justify-between gap-3 text-sm text-black dark:text-gray-200 bg-gradient-to-r from-purple-50/80 to-pink-50/80 dark:from-purple-900/30 dark:to-indigo-900/30 rounded px-4 py-3 mb-4 mt-3 border border-purple-200 dark:border-purple-700/50 outline-none focus-within:border-purple-400 dark:focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-200 dark:focus-within:ring-purple-800;
 }
 
 .btn-primary {
-    @apply w-full text-sm font-medium text-white bg-black shadow-lg shadow-purple-600/5 p-[10px] rounded-md my-1 hover:bg-purple-600/15 hover:text-black cursor-pointer;
+    @apply w-full text-sm font-medium text-white bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 dark:from-purple-500 dark:via-pink-500 dark:to-blue-500 shadow-lg shadow-purple-500/30 dark:shadow-purple-400/20 p-[10px] rounded-md my-1 hover:from-purple-700 hover:via-pink-700 hover:to-blue-700 dark:hover:from-purple-400 dark:hover:via-pink-400 dark:hover:to-blue-400 hover:shadow-xl hover:shadow-purple-500/40 dark:hover:shadow-purple-400/30 cursor-pointer transition-all;
 }
 
 .btn-small {
-    @apply flex items-center gap-2 text-[13px] font-semibold text-white bg-linear-to-r from-purple-500/8 to-purple-700 px-5 py-1.5 rounded cursor-pointer;
+    @apply flex items-center gap-2 text-[13px] font-semibold text-white bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 dark:from-purple-500 dark:via-pink-500 dark:to-blue-500 px-5 py-1.5 rounded cursor-pointer hover:from-purple-700 hover:via-pink-700 hover:to-blue-700 dark:hover:from-purple-400 dark:hover:via-pink-400 dark:hover:to-blue-400 transition-all shadow-md hover:shadow-lg;
 }
 
 .btn-small-light {
-    @apply flex items-center gap-2 text-[12px] font-semibold text-purple-800 bg-purple-600/15 border border-purple-50 hover:border-purple-400 px-3 py-1.5 rounded cursor-pointer;
+    @apply flex items-center gap-2 text-[12px] font-semibold text-purple-700 dark:text-purple-300 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/40 dark:to-indigo-900/40 border border-purple-300 dark:border-purple-700 hover:border-purple-500 dark:hover:border-purple-500 hover:from-purple-200 hover:to-pink-200 dark:hover:from-purple-800/60 dark:hover:to-indigo-800/60 px-3 py-1.5 rounded cursor-pointer transition-all;
 }
 
 .form-input {
-    @apply w-full text-sm text-black outline-none bg-white border border-slate-100 px-2.5 py-3 rounded-md mt-2 placeholder:text-gray-500 focus-within:border-purple-300;
+    @apply w-full text-sm text-black dark:text-gray-200 outline-none bg-white dark:bg-slate-800/50 border border-purple-200 dark:border-purple-700/50 px-2.5 py-3 rounded-md mt-2 placeholder:text-gray-500 dark:placeholder:text-gray-400 focus-within:border-purple-400 dark:focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-200 dark:focus-within:ring-purple-800 transition-all;
 }
 
 
@@ -189,10 +200,29 @@
 
 /* Gradient text */
 .gradient-text {
-    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    background: linear-gradient(135deg, #7C3AED 0%, #EC4899 25%, #3B82F6 50%, #8B5CF6 75%, #EC4899 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.dark .gradient-text {
+    background: linear-gradient(135deg, #A78BFA 0%, #F472B6 25%, #60A5FA 50%, #C084FC 75%, #F472B6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
 }
 
 /* Floating animation for cards */
